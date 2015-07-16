@@ -1,6 +1,6 @@
 {
   "name": "nstrap",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/MrBoolean/nstrap/issues"
   },
-  "homepage": "https://github.com/MrBoolean/nstrap#readme"
+  "homepage": "https://github.com/MrBoolean/nstrap#readme",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "eventemitter3": "^1.1.1",
+    "lodash.flatten": "^3.0.2",
+    "lodash.isfunction": "^3.0.6",
+    "lodash.isstring": "^3.0.1",
+    "lodash.isundefined": "^3.0.1",
+    "lodash.merge": "^3.3.2"
+  }
 }
