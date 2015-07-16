@@ -21,8 +21,14 @@
     "eventemitter3": "^1.1.1",
     "lodash.flatten": "^3.0.2",
     "lodash.isfunction": "^3.0.6",
+    "lodash.isobject": "^3.0.2",
     "lodash.isstring": "^3.0.1",
     "lodash.isundefined": "^3.0.1",
     "lodash.merge": "^3.3.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0",
+    "gulp-mocha": "^2.1.3"
   }
 }

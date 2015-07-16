@@ -4,10 +4,15 @@ var Promise = require('bluebird'),
     NStrap  = require('../').NStrap,
     kernel  = new NStrap();
 
-kernel.add('config', function () {
+kernel.add('env', function (done) {
+  return done(process.env.NODE_ENV || 'dev');
+});
+
+kernel.add('config', function (env) {
   return new Promise(function (resolve) {
     setTimeout(function () {
       resolve({
+        env:      env,
         database: {
           sets: 'mongodb://localhost/main'
         }
@@ -16,7 +21,7 @@ kernel.add('config', function () {
   });
 });
 
-kernel.add('database', ['config'], function (config, done) {
+kernel.add('database', ['config', 'env'], function (config, env, done) {
   done({ connected: true, options: config.database });
 });
 
