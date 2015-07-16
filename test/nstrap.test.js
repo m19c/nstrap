@@ -1,5 +1,7 @@
-var chai = require('chai'),
-    cap  = require('chai-as-promised');
+var chai   = require('chai'),
+    cap    = require('chai-as-promised'),
+    assert = chai.assert,
+    NStrap = require('../');
 
 chai.use(cap);
 
@@ -25,7 +27,31 @@ describe('nstrap', function () {
   });
 
   describe('logical tract', function () {
-    it('resolves correctly');
+    it('resolves correctly', function () {
+      var bootstrap = new NStrap();
+
+      bootstrap.add('l', function (next) {
+        next(1);
+      });
+
+      bootstrap.add('e', function (next) {
+        next(3);
+      });
+
+      bootstrap.add('t', function (next) {
+        next(7);
+      });
+
+      bootstrap.add('leet', ['l', 'e', 'e', 't'], function (l, e1, e2, t, next) {
+        next([l, e1, e2, t].join(''));
+      });
+
+      process.nextTick(function () {
+        assert.eventually.equal(bootstrap.get('leet'), 1337);
+      });
+      bootstrap.run();
+    });
+
     it('rejects once the timeout exceeded');
     it('cancels all the provided tasks once the timeout is exceeded');
   });
