@@ -27,7 +27,10 @@
     "lodash.merge": "^3.3.2"
   },
   "devDependencies": {
+    "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
     "gulp": "^3.9.0",
+    "gulp-coverage": "^0.3.36",
     "gulp-eslint": "^0.15.0",
     "gulp-mocha": "^2.1.3"
   }
