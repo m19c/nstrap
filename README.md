@@ -8,6 +8,54 @@ nstrap
 3. [Contribute](#contribute)
 4. [License](#license)
 
+## API
+### `add(name[, deps[, task]])`
+- `name`: The name of the task as a `string`.
+- `deps`: An optional array passed as the second argument which defines the dependencies for this task. The task gets called once all dependencies are fulfilled.
+- `task`: The task as a function. The function takes an argument called `done` which should be called by the task once it is completed. The argument passed to `done` can be anything - it will be appended to the `nstrap` registry to access the data. If you pass an `Error` the task is marked as invalid. Note that you can also use a `Promise` library (preferred: `bluebird`).
+
+#### Example
+```javascript
+var bootstrap = require('nstrap')();
+
+bootstrap.add('config', function (done) {
+  done(require('path/to/my/config'));
+});
+
+bootstrap.add('database', function () {
+  return new Promise(function (resovle) {
+    resolve({ connected: true });
+  });
+});
+
+bootstrap.add({
+  name:     'mysql',
+  provider: function (instance) {
+    instance.add('mysql:config', function () {
+      return {
+        host: '',
+        user: '',
+        pass: '',
+        db:   ''
+      };
+    });
+  },
+  deps: ['mysql:config'],
+  task: function (config, done) {
+    done({
+      connectedTo: config
+    });
+  }
+});
+
+bootstrap.run()
+  .then(function (kernel) {
+    kernel.database.connected; // true
+    kernel.config; // the configuration `path/to/my/config`
+  })
+;
+```
+
 ## Quick start
 ```javascript
 var bootstrap = require('nstrap')(),
