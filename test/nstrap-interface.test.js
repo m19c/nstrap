@@ -1,4 +1,5 @@
 var chai            = require('chai'),
+    Promise         = require('bluebird'),
     NStrapInterface = require('../').NStrapInterface;
 
 chai.should();
