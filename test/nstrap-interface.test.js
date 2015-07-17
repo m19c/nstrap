@@ -58,24 +58,18 @@ describe('NStrapInterface', function () {
     });
   });
 
-  describe('addSupplier', function () {
+  describe('setSupplier', function () {
     it('returns an instance of NStrapInterface', function () {
-      current.addSupplier(function () {}).should.equal(current);
-    });
-
-    it('accepts various arguments', function () {
-      current.addSupplier(function () {}, function () {}).getSuppliers().should.have.length(2);
+      current.setSupplier(function () {}).should.equal(current);
     });
   });
 
-  describe('getSuppliers', function () {
+  describe('getSupplier', function () {
     it('returns an array of functions', function () {
       function a() {}
-      function b() {}
 
-      current.addSupplier(a, b);
-
-      current.getSuppliers().should.eql([a, b]);
+      current.setSupplier(a);
+      current.getSupplier().should.eql(a);
     });
   });
 

@@ -2,6 +2,7 @@
 
 var chai            = require('chai'),
     cap             = require('chai-as-promised'),
+    // Promise         = require('bluebird'),
     exported        = require('../'),
     NStrap          = exported.NStrap,
     NStrapInterface = exported.NStrapInterface;
@@ -26,7 +27,26 @@ describe('NStrap', function () {
     current = undefined;
   });
 
-  describe('set', function () {
+  describe('addInterface', function () {
+    it('throws an error if the obtained argument is not an instance of NStrapInterface', function () {
+      (function () {
+        current.addInterface(1337);
+      }).should.throw(Error);
+    });
+  });
+
+  describe('add', function () {
+    it('appends the supplied modules', function (next) {
+      current.add('example', [], function (done) { done(1337); }, function () {
+        current.add('example:config', function () {});
+      });
+
+      process.nextTick(function () {
+        current.registry.should.have.length(2);
+        next();
+      });
+    });
+
     it('accepts two arguments (name and task)', function () {
       function example() {}
       current.add('example', example);
