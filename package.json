@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gulp test"
+    "test": "./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "chai-as-promised": "^5.1.0",
+    "codeclimate-test-reporter": "^0.1.0",
     "gulp": "^3.9.0",
     "gulp-coverage": "^0.3.36",
     "gulp-eslint": "^0.15.0",
