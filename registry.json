@@ -1,3 +1,9 @@
 {
-  "registry": []
+  "registry": [
+    {
+      "name": "nstrap-environment",
+      "description": "This `nstrap` modules provides the current environment using `process.env.NODE_ENV`. Optionally you can pass options to define the default environment.",
+      "repository": "MrBoolean/nstrap-environment"
+    }
+  ]
 }
