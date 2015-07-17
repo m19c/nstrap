@@ -27,10 +27,10 @@ describe('NStrap', function () {
     current = undefined;
   });
 
-  describe('addInterface', function () {
+  describe('addModule', function () {
     it('throws an error if the obtained argument is not an instance of NStrapModule', function () {
       (function () {
-        current.addInterface(1337);
+        current.addModule(1337);
       }).should.throw(Error);
     });
   });
