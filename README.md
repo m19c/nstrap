@@ -1,6 +1,8 @@
 nstrap
 ======
-`nstrap` is a bootstrap library which allows you to start your application with less overhead and an unified interface. You are welcome to contribute to this repository or create some third-party modules like `nstrap-mongoose`.
+`nstrap` is a bootstrap library which allows you to start your application with less overhead and an unified interface. You are welcome to contribute to this repository or create some third-party modules.
+
+[Checkout the example application (`express`, `sqlite3` and `nstrap`)!](https://github.com/MrBoolean/nstrap-example)
 
 **Note:** This module is marked as _under development_.
 
