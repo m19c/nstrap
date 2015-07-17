@@ -1,0 +1,7 @@
+dist/
+example/
+test/
+.codeclimate.yml
+.travis.yml
+gulpfile.js
+registry.json

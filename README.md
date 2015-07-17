@@ -2,6 +2,8 @@ nstrap
 ======
 `nstrap` is a bootstrap library which allows you to start your application with less overhead and an unified interface. You are welcome to contribute to this repository or create some third-party modules like `nstrap-mongoose`.
 
+**Note:** This module is marked as _under development_.
+
 [![Build Status](https://travis-ci.org/MrBoolean/nstrap.svg?branch=master)](https://travis-ci.org/MrBoolean/nstrap) [![npm version](https://badge.fury.io/js/nstrap.svg)](http://badge.fury.io/js/nstrap) [![Dependencies](https://david-dm.org/MrBoolean/nstrap.svg)](https://travis-ci.org/MrBoolean/nstrap) [![Code Climate](https://codeclimate.com/github/MrBoolean/nstrap/badges/gpa.svg)](https://codeclimate.com/github/MrBoolean/nstrap) [![Test Coverage](https://codeclimate.com/github/MrBoolean/nstrap/badges/coverage.svg)](https://codeclimate.com/github/MrBoolean/nstrap/coverage)
 
 ## Table of Contents
