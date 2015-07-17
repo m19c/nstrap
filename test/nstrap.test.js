@@ -113,6 +113,7 @@ describe('NStrap', function () {
       process.nextTick(function () {
         current.get('leet').getResult().should.eventually.equal('1337').and.notify(next);
       });
+
       current.run();
     });
 

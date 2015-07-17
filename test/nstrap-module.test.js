@@ -80,14 +80,49 @@ describe('NStrapModule', function () {
   });
 
   describe('getResult', function () {
-    it('returns the result', function (next) {
-      current.setResult(new Promise(function (resolve) {
-        process.nextTick(function () {
-          resolve(1);
-        });
-      }));
+    it('returns the result', function () {
+      current.setResult(1);
+      current.getResult().should.equal(1);
+    });
+  });
 
-      current.getResult().should.eventually.equal(1).and.notify(next);
+  describe('isValid', function () {
+    it('throws an error if the name is invalid', function () {
+      current
+        .setName(1337)
+        .isValid()
+        .should.be.an.instanceof(Error)
+      ;
+    });
+
+    it('throws an error if the task is invalid', function () {
+      current
+        .setName('example')
+        .setTask(1337)
+        .isValid()
+        .should.be.an.instanceof(Error)
+      ;
+    });
+
+    it('throws an error if the dependencies are invalid', function () {
+      current
+        .setName('example')
+        .setTask(function () {})
+        .addDependency(undefined)
+        .isValid()
+        .should.be.an.instanceof(Error)
+      ;
+    });
+
+    it('throws an error if the supplier is invalid', function () {
+      current
+        .setName('example')
+        .setTask(function () {})
+        .addDependency('test')
+        .setSupplier('fail')
+        .isValid()
+        .should.be.an.instanceof(Error)
+      ;
     });
   });
 });
