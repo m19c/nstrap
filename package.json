@@ -41,5 +41,8 @@
     "boot",
     "kernel",
     "start"
-  ]
+  ],
+  "engines": {
+    "node": ">0.8"
+  }
 }
