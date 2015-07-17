@@ -17,12 +17,12 @@ npm i --save nstrap
 ```
 
 ## API
-### `add(name[, deps[, task]])`
-- `name`: The name of the task as a `string`.
-- `deps`: An optional array passed as the second argument which defines the dependencies for this task. The task gets called once all dependencies are fulfilled.
+### `add(name[, dependencies[, task]])`
+- `name`: The name of the task as a `string` or an instance of `NStrapModule`.
+- `dependencies`: An optional array passed as the second argument which defines the dependencies for this task. The task gets called once all dependencies are fulfilled.
 - `task`: The task as a function. The function takes an argument called `done` which should be called by the task once it is completed. The argument passed to `done` can be anything - it will be appended to the `nstrap` registry to access the data. If you pass an `Error` the task is marked as invalid. Note that you can also use a `Promise` library (preferred: `bluebird`).
 
-## addModule(module)
+### addModule(module)
 - `module`: An instance of `NStrapModule`.
 
 #### Example
@@ -51,7 +51,7 @@ bootstrap.add({
       };
     });
   },
-  deps: ['mysql:config'],
+  dependencies: ['mysql:config'],
   task: function (config, done) {
     done({
       connectedTo: config
@@ -66,6 +66,9 @@ bootstrap.run()
   })
 ;
 ```
+
+### get(name)
+- `name`: The name of the required module.
 
 ## Quick start
 ```javascript
@@ -106,17 +109,17 @@ bootstrap.run()
 ```
 
 ## Create your own NStrap module
-`nstrap` comes with a simple interface called `NStrapInterface` to provide own modules.
+`nstrap` comes with a simple interface called `NStrapModule` to provide own modules.
 
 ```javascript
-var NStrapInterface = require('nstrap').NStrapInterface;
+var NStrapModule = require('nstrap').NStrapModule;
 
 module.exports = function example() {
-  var example = new NStrapInterface();
+  var example = new NStrapModule();
 
   example
     .setName('example')
-    .addSupplier(function (instance) {
+    .setSupplier(function (instance) {
       instance.add('example:config', function () {
         return { name: 'Jon Doe' };
       });
@@ -132,6 +135,8 @@ module.exports = function example() {
   return example;
 };
 ```
+
+To test your module you can simply call the `isValid` function. The function returns `true` or an instance of `Error` with additional information about the behaviour.
 
 ## License
 The MIT License (MIT)
