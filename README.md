@@ -5,10 +5,16 @@ nstrap
 [![Build Status](https://travis-ci.org/MrBoolean/nstrap.svg?branch=master)](https://travis-ci.org/MrBoolean/nstrap) [![npm version](https://badge.fury.io/js/nstrap.svg)](http://badge.fury.io/js/nstrap) [![Dependencies](https://david-dm.org/MrBoolean/nstrap.svg)](https://travis-ci.org/MrBoolean/nstrap)
 
 ## Table of Contents
-1. [API Reference](#api)
-2. [Quick start](#quick-start)
-3. [Create your own NStrap module](#create-your-own-nstrap-module)
-4. [License](#license)
+1. [Install](#install)
+2. [API Reference](#api)
+3. [Quick start](#quick-start)
+4. [Create your own NStrap module](#create-your-own-nstrap-module)
+5. [License](#license)
+
+## Install
+```
+npm i --save nstrap
+```
 
 ## API
 ### `add(name[, deps[, task]])`
