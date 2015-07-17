@@ -22,6 +22,9 @@ npm i --save nstrap
 - `deps`: An optional array passed as the second argument which defines the dependencies for this task. The task gets called once all dependencies are fulfilled.
 - `task`: The task as a function. The function takes an argument called `done` which should be called by the task once it is completed. The argument passed to `done` can be anything - it will be appended to the `nstrap` registry to access the data. If you pass an `Error` the task is marked as invalid. Note that you can also use a `Promise` library (preferred: `bluebird`).
 
+## addModule(module)
+- `module`: An instance of `NStrapModule`.
+
 #### Example
 ```javascript
 var bootstrap = require('nstrap')();
