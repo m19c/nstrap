@@ -1,58 +1,115 @@
-var chai   = require('chai'),
-    cap    = require('chai-as-promised'),
-    assert = chai.assert,
-    NStrap = require('../');
+'use strict';
+
+var chai            = require('chai'),
+    cap             = require('chai-as-promised'),
+    exported        = require('../'),
+    NStrap          = exported.NStrap,
+    NStrapInterface = exported.NStrapInterface;
 
 chai.use(cap);
+chai.should();
 
-describe('nstrap', function () {
-  'use strict';
+describe('module', function () {
+  it('returns a function which returns an instance of NStrap', function () {
+    exported().should.be.an.instanceof(NStrap);
+  });
+});
+
+describe('NStrap', function () {
+  var current;
+
+  beforeEach(function () {
+    current = new NStrap();
+  });
+
+  afterEach(function () {
+    current = undefined;
+  });
 
   describe('set', function () {
-    it('throws an error if the obtained name is not a string');
-    it('throws an error if the task is not a function');
-    it('accepts two arguments (name and task)');
-    it('accepts three arguments (name, deps and task)');
-    it('stores the necessary information on registry and registryMap');
+    it('accepts two arguments (name and task)', function () {
+      function example() {}
+      current.add('example', example);
 
-    describe('third-party implementation', function () {
-      it('accepts an object with the basic information e.g. name, deps and task');
-      it('accepts an object with a provider function');
+      current.get('example').getName().should.equal('example');
+      current.get('example').getTask().should.equal(example);
+    });
+
+    it('accepts three arguments (name, deps and task)', function () {
+      var dependencies = ['a'];
+
+      function example() {}
+      current.add('example', dependencies, example);
+
+      current.get('example').getName().should.equal('example');
+      current.get('example').getDependencies()[0].should.equal('a');
+      current.get('example').getTask().should.equal(example);
+    });
+
+    it('stores the necessary information on registry and registryMap', function () {
+      current.add('example', function () {});
+
+      current.registry.should.have.length(1);
+      current.registryMap.should.have.property('example');
     });
   });
 
   describe('get', function () {
-    it('throws an error if the obtained name is not a string');
-    it('returns the correct value after the NStrap node is called');
+    it('returns an instance of NStrapInterface', function () {
+      current.add('example', function () {});
+      current.get('example').should.be.an.instanceof(NStrapInterface);
+    });
   });
 
   describe('logical tract', function () {
-    it('resolves correctly', function () {
-      var bootstrap = new NStrap();
+    it('rejects if an interface is not valid', function (next) {
+      var example = new NStrapInterface();
 
-      bootstrap.add('l', function (next) {
-        next(1);
+      example.setName(1337);
+      current.add(example);
+
+      current.run().should.be.rejected.and.notify(next);
+    });
+
+    it('resolves correctly', function (next) {
+      current.add('l', function (done) {
+        done(1);
       });
 
-      bootstrap.add('e', function (next) {
-        next(3);
+      current.add('e', function (done) {
+        done(3);
       });
 
-      bootstrap.add('t', function (next) {
-        next(7);
+      current.add('t', function (done) {
+        done(7);
       });
 
-      bootstrap.add('leet', ['l', 'e', 'e', 't'], function (l, e1, e2, t, next) {
-        next([l, e1, e2, t].join(''));
+      current.add('leet', ['l', 'e', 'e', 't'], function (l, e1, e2, t, done) {
+        done([l, e1, e2, t].join(''));
       });
 
       process.nextTick(function () {
-        assert.eventually.equal(bootstrap.get('leet'), 1337);
+        current.get('leet').getResult().should.eventually.equal('1337').and.notify(next);
       });
-      bootstrap.run();
+      current.run();
     });
 
-    it('rejects once the timeout exceeded');
-    it('cancels all the provided tasks once the timeout is exceeded');
+    it('returns the same runner instance', function () {
+      current.add('test', function (done) {
+        done('test');
+      });
+
+      current.run().should.equal(current.run());
+    });
+
+    describe('rejects if one task fails...', function () {
+      it('using the callback', function (next) {
+        current.add('fail', function (done) {
+          done(new Error('Something went wrong'));
+        });
+
+        current.run().should.be.rejected.and.notify(next);
+      });
+    });
   });
 });

@@ -8,9 +8,8 @@
     "before": true,
     "after": true,
     "expect": true,
-    "by": true,
-    "element": true,
-    "browser": true
+    "beforeEach": true,
+    "afterEach": true
   },
   "rules": {
     "semi": 2,
@@ -59,7 +58,7 @@
     "space-before-blocks": 2,
     "spaced-line-comment": 1,
     "block-scoped-var": 2,
-    "complexity": [1, 20],
+    "complexity": [1, 6],
     "dot-notation": [2, { "allowKeywords": true }],
     "no-caller": 2,
     "no-else-return": 2,

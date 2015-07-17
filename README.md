@@ -5,7 +5,7 @@ nstrap
 ## Table of Contents
 1. [API Reference](#api)
 2. [Quick start](#quick-start)
-3. [Contribute](#contribute)
+3. [Create your own NStrap module](#create-your-own-nstrap-module)
 4. [License](#license)
 
 ## API
@@ -92,6 +92,34 @@ bootstrap.run()
     });
   })
 ;
+```
+
+## Create your own NStrap module
+`nstrap` comes with a simple interface called `NStrapInterface` to provide own modules.
+
+```javascript
+var NStrapInterface = require('nstrap').NStrapInterface;
+
+module.exports = function example() {
+  var example = new NStrapInterface();
+
+  example
+    .setName('example')
+    .addSupplier(function (instance) {
+      instance.add('example:config', function () {
+        return { name: 'Jon Doe' };
+      });
+    })
+    .addDependency('example:config')
+    .setTask(function (config) {
+      return new Promise(function (resolve, reject) {
+        resolve('Hi ' + config.name);
+      });
+    })
+  ;
+
+  return example;
+};
 ```
 
 ## License

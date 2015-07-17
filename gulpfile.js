@@ -20,7 +20,7 @@ gulp.task('test', function () {
   return gulp
     .src(['test/**/*.test.js'], { read: false })
     .pipe(coverage.instrument({
-      pattern:        ['**/test*'],
+      pattern:        ['lib/**/*', 'index.js'],
       debugDirectory: 'dist/debug'
     }))
     .pipe(mocha())
