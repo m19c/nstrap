@@ -1,16 +1,16 @@
-var chai            = require('chai'),
-    Promise         = require('bluebird'),
-    NStrapInterface = require('../').NStrapInterface;
+var chai         = require('chai'),
+    Promise      = require('bluebird'),
+    NStrapModule = require('../').NStrapModule;
 
 chai.should();
 
-describe('NStrapInterface', function () {
+describe('NStrapModule', function () {
   'use strict';
 
   var current;
 
   beforeEach(function () {
-    current = new NStrapInterface();
+    current = new NStrapModule();
   });
 
   afterEach(function () {
@@ -18,7 +18,7 @@ describe('NStrapInterface', function () {
   });
 
   describe('setName', function () {
-    it('returns an instance of NStrapInterface', function () {
+    it('returns an instance of NStrapModule', function () {
       current.setName('example').should.equal(current);
     });
   });
@@ -30,7 +30,7 @@ describe('NStrapInterface', function () {
   });
 
   describe('setTask', function () {
-    it('returns an instance of NStrapInterface', function () {
+    it('returns an instance of NStrapModule', function () {
       current.setTask(function () {}).should.equal(current);
     });
   });
@@ -43,7 +43,7 @@ describe('NStrapInterface', function () {
   });
 
   describe('addDependency', function () {
-    it('returns an instance of NStrapInterface', function () {
+    it('returns an instance of NStrapModule', function () {
       current.addDependency('current').should.equal(current);
     });
 
@@ -59,7 +59,7 @@ describe('NStrapInterface', function () {
   });
 
   describe('setSupplier', function () {
-    it('returns an instance of NStrapInterface', function () {
+    it('returns an instance of NStrapModule', function () {
       current.setSupplier(function () {}).should.equal(current);
     });
   });
@@ -74,7 +74,7 @@ describe('NStrapInterface', function () {
   });
 
   describe('setResult', function () {
-    it('returns an instance of NStrapInterface', function () {
+    it('returns an instance of NStrapModule', function () {
       current.setResult(new Promise(function () {})).should.equal(current);
     });
   });

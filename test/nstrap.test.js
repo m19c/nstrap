@@ -1,11 +1,11 @@
 'use strict';
 
-var chai            = require('chai'),
-    cap             = require('chai-as-promised'),
-    Promise         = require('bluebird'),
-    exported        = require('../'),
-    NStrap          = exported.NStrap,
-    NStrapInterface = exported.NStrapInterface;
+var chai         = require('chai'),
+    cap          = require('chai-as-promised'),
+    Promise      = require('bluebird'),
+    exported     = require('../'),
+    NStrap       = exported.NStrap,
+    NStrapModule = exported.NStrapModule;
 
 chai.use(cap);
 chai.should();
@@ -28,7 +28,7 @@ describe('NStrap', function () {
   });
 
   describe('addInterface', function () {
-    it('throws an error if the obtained argument is not an instance of NStrapInterface', function () {
+    it('throws an error if the obtained argument is not an instance of NStrapModule', function () {
       (function () {
         current.addInterface(1337);
       }).should.throw(Error);
@@ -75,15 +75,15 @@ describe('NStrap', function () {
   });
 
   describe('get', function () {
-    it('returns an instance of NStrapInterface', function () {
+    it('returns an instance of NStrapModule', function () {
       current.add('example', function () {});
-      current.get('example').should.be.an.instanceof(NStrapInterface);
+      current.get('example').should.be.an.instanceof(NStrapModule);
     });
   });
 
   describe('logical tract', function () {
     it('rejects if an interface is not valid', function (next) {
-      var example = new NStrapInterface();
+      var example = new NStrapModule();
 
       example.setName(1337);
       current.add(example);

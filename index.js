@@ -1,5 +1,5 @@
-var NStrap          = require('./lib/nstrap'),
-    NStrapInterface = require('./lib/nstrap-interface');
+var NStrap       = require('./lib/nstrap'),
+    NStrapModule = require('./lib/nstrap-module');
 
 module.exports = function () {
   'use strict';
@@ -8,4 +8,4 @@ module.exports = function () {
 };
 
 module.exports.NStrap = NStrap;
-module.exports.NStrapInterface = NStrapInterface;
+module.exports.NStrapModule = NStrapModule;
