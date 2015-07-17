@@ -2,6 +2,8 @@ nstrap
 ======
 `nstrap` is a bootstrap library which allows you to start your application with less overhead and an unified interface. You are welcome to contribute to this repository or create some third-party modules like `nstrap-mongoose`.
 
+[![Build Status](https://travis-ci.org/MrBoolean/nstrap.svg?branch=master)](https://travis-ci.org/MrBoolean/nstrap)
+
 ## Table of Contents
 1. [API Reference](#api)
 2. [Quick start](#quick-start)
