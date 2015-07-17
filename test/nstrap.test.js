@@ -2,7 +2,7 @@
 
 var chai            = require('chai'),
     cap             = require('chai-as-promised'),
-    // Promise         = require('bluebird'),
+    Promise         = require('bluebird'),
     exported        = require('../'),
     NStrap          = exported.NStrap,
     NStrapInterface = exported.NStrapInterface;
@@ -100,8 +100,10 @@ describe('NStrap', function () {
         done(3);
       });
 
-      current.add('t', function (done) {
-        done(7);
+      current.add('t', function () {
+        return new Promise(function (resolve) {
+          resolve(7);
+        });
       });
 
       current.add('leet', ['l', 'e', 'e', 't'], function (l, e1, e2, t, done) {

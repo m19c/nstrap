@@ -4,7 +4,8 @@ var gulp     = require('gulp'),
     eslint   = require('gulp-eslint'),
     mocha    = require('gulp-mocha'),
     coverage = require('gulp-coverage'),
-    exec     = require('child_process').exec;
+    exec     = require('child_process').exec,
+    rs       = require('run-sequence');
 
 gulp.task('lint', function () {
   return gulp
@@ -48,4 +49,6 @@ gulp.task('ccm', function (done) {
   });
 });
 
-gulp.task('default', ['lint', 'test', 'ccm']);
+gulp.task('default', function (done) {
+  rs('lint', 'test', 'ccm', done);
+});
